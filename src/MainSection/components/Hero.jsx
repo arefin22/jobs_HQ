@@ -13,7 +13,7 @@ const Hero = () => {
             }
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-5xl">
-                    <h1 className="mb-5 text-8xl text-white font-bold">Find & Hire Experts for any Job.</h1>
+                    <h1 className="mb-5 text-4xl md:text-8xl text-white font-bold">Find & Hire Experts for any Job.</h1>
                     <p className="my-10 text-lg text-white">Unlock your potential with quality job & earn from world leading brands.</p>
                     <div className="relative max-w-md mx-auto h-32  ">
                         <input type="text" placeholder="Search By Name" className="input input-bordered bg-white text-slate-800 dark:bg-slate-800 dark:text-white h-16 w-full pr-16" />

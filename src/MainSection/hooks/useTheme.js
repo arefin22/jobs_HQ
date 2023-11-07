@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 export const useTheme = () => {
-    const [mode, setMode] = useState("light");
+    const [mode, setMode] = useState("dark");
     function changeTheme() {
         const html = document.documentElement;
         if (mode == "light") { html.classList.remove("light"); html.classList.add("dark"); setMode("dark"); localStorage.setItem("mode", "dark"); } else {

@@ -5,7 +5,7 @@ import JobsSectionHomePage from '../components/JobsSectionHomePage'
 function App() {
 
   return (
-    <div>
+    <div className='bg-white dark:bg-slate-900'>
       <Hero></Hero>
       <JobsSectionHomePage></JobsSectionHomePage>
     </div>

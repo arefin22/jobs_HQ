@@ -20,7 +20,7 @@ const Navbar = () => {
     const { changeTheme, mode } = useTheme()
 
     return (
-        <header className="sticky top-0 z-50 text-gray-600 dark:text-white bg-white dark:bg-slate-800 body-font drop-shadow-lg">
+        <header className="md:sticky top-0 z-50 text-gray-600 dark:text-white bg-white dark:bg-slate-800 body-font drop-shadow-lg">
             <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
                 <Link to={'/'} className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                     {
