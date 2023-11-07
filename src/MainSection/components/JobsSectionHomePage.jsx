@@ -8,10 +8,11 @@ const JobsSectionHomePage = () => {
 
     const [jobsData, setjobsData] = useState(null)
     const [jobTypeFilter, setJobTypeFilter] = useState('All');
+    // console.log(jobsData);
     useEffect(() => {
-        fetch('jobs.json')
+        fetch('http://localhost:5000/jobs')
             .then(res => res.json())
-            .then(data => setjobsData(data.jobPostings))
+            .then(data => setjobsData(data))
     }, [])
 
     const jobTabs = <>
@@ -62,28 +63,28 @@ const JobsSectionHomePage = () => {
                 </div>
             </TabPanel>
             <TabPanel>
-                <div className='grid grid-cols-3 p-5 gap-4 container mx-auto'>
+                <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
                         jobsData?.filter(jobData => jobData?.jobType === 'Full Time').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>
             <TabPanel>
-                <div className='grid grid-cols-3 p-5 gap-4 container mx-auto'>
+                <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
                         jobsData?.filter(jobData => jobData?.jobType === 'Remote').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>
             <TabPanel>
-                <div className='grid grid-cols-3 p-5 gap-4 container mx-auto'>
+                <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
                         jobsData?.filter(jobData => jobData?.jobType === 'Hybrid').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>
             <TabPanel>
-                <div className='grid grid-cols-3 p-5 gap-4 container mx-auto'>
+                <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
                         jobsData?.filter(jobData => jobData?.jobType === 'Part Time').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
                     }

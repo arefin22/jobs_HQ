@@ -4,19 +4,19 @@ import { SlCalender } from "react-icons/sl";
 import { MdOutlineEmojiPeople, MdEditCalendar, MdOutlineAttachMoney } from "react-icons/md";
 
 const SingleJob = (job) => {
-    const { id, postedBy, jobTitle, postingDate, applicationDeadline, salaryRange, applicantsNumber, jobType } = job.children[1]
-    // console.log(id , postedBy, jobTitle, postingDate, applicationDeadline , salaryRange, applicantsNumber, jobType);
 
-    const handleClick = (id) => {
-        console.log(id);
+    // console.log(job);
+
+    const { _id, postedBy, jobTitle, postingDate, applicationDeadline, salaryRange, applicantsNumber, jobType } = job.children[1]
+    // console.log(_id , postedBy, jobTitle, postingDate, applicationDeadline , salaryRange, applicantsNumber, jobType);
+
+    const handleClick = (_id) => {
+        console.log(_id);
     }
 
     return (
         <div>
             <div className="card rounded-lg drop-shadow-xl p-4 text-slate-800 dark:text-slate-200 bg-slate-300 dark:bg-slate-800 hover:border-slate-500 hover:border w-auto min-h-[200px] ">
-                <div className="flex justify-end ">
-                    <h2 className="text-lg border text-center w-1/3 rounded-3xl">{jobType}</h2>
-                </div>
                 <h2 className="text-2xl font-bold text-blue-950 dark:text-sky-500">{jobTitle}</h2>
                 <h2 className="text-lg font-medium text-slate-800 dark:text-slate-200">{postedBy}</h2>
                 {/* <table className="w-2/3 my-5">
@@ -53,7 +53,10 @@ const SingleJob = (job) => {
                     <SlCalender />
                     <h2 className="text-lg">Deadline : <i>{applicationDeadline}</i></h2>
                 </div>
-                <button className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" onClick={() => handleClick(id)} >View Details &rarr;</button>
+                <div className="flex flex-row items-center justify-between">
+                    <button className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" onClick={() => handleClick(_id)} >View Details &rarr;</button>
+                    <h2 className="text-lg border text-center w-1/5 rounded-3xl">{jobType}</h2>
+                </div>
 
             </div>
         </div>
