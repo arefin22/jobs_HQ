@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 
 const Register = () => {
@@ -25,6 +26,14 @@ const Register = () => {
         const photo = data.photoUrl.value
 
         console.log(name, photo);
+
+        const userData = {name, email, password, photo}
+        
+        axios.post('http://localhost:5000/user', userData )
+        .then(res => {
+            console.log(res);
+        })
+        
 
         if (!isStrongPassword(password)) {
             toast('Password must be at least 6 characters long and contain at least one uppercase letter, one special character, and one number');

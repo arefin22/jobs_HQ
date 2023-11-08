@@ -1,12 +1,25 @@
 import { Link, NavLink } from "react-router-dom";
 import { BsSun, BsFillMoonFill } from 'react-icons/bs'
 import { useTheme } from "../hooks/useTheme";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
+import axios from "axios";
 
 
 const Navbar = () => {
 
+    const [currentUserr , setCurrentUserr] = useState(null)
+
+    axios.get('http://localhost:5000/user').then(res => {
+        // if(res._id){
+        //     const photo = res.photo;
+        //     console.log(photo);
+        // }
+        const currentUser = res?.data?.find(data => data?.email === user?.email)
+        setCurrentUserr(currentUser);
+
+        // console.log(res.data.find(data => data.email === user.email));
+    })
 
     const {user , signOutFromSite} = useContext(AuthContext)
 
@@ -45,7 +58,7 @@ const Navbar = () => {
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
-                                        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                        <img src={currentUserr?.photo || user.photo || user.photoURL} />
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white dark:bg-slate-900 rounded-box w-52">
