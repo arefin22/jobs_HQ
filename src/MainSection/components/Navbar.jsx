@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const [currentUser , setCurrentUser] = useState(null)
 
-    axios.get('http://localhost:5000/user')
+    axios.get('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/user')
     .then(res => {
         // if(res._id){
         //     const photo = res.photo;

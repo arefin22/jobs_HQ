@@ -29,7 +29,7 @@ const Register = () => {
 
         const userData = {name, email, password, photo}
         
-        axios.post('http://localhost:5000/user', userData )
+        axios.post('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/user', userData )
         .then(res => {
             console.log(res);
         })

@@ -22,7 +22,7 @@ const DetailJob = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/jobs')
+        axios.get('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/jobs')
             .then(data => {
                 const specificJobData = data.data?.find(data => data._id === id)
                 // console.log(specificJobData);
@@ -31,7 +31,7 @@ const DetailJob = () => {
     }, [id])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/user')
+        axios.get('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/user')
             .then(data => {
                 // console.log(data.data);
                 const aData = data.data
@@ -45,7 +45,7 @@ const DetailJob = () => {
     }, [user?.email])
 
     // useEffect(() => {
-    //     axios.get('http://localhost:5000/applications')
+    //     axios.get('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/applications')
     //         .then(data => {
     //             data.data.map(sdata => {
     //                 if (sdata.email !== user?.email) {
@@ -64,7 +64,7 @@ const DetailJob = () => {
         const resume = from.resumeUrl.value
         const applicationData = { userName, email, resume , jobData}
         
-        axios.post('http://localhost:5000/applications', applicationData)
+        axios.post('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/applications', applicationData)
             .then(data => {
                 if (data.data.insertedId) {
                     toast('Application Successful')

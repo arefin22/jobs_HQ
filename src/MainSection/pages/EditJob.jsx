@@ -15,7 +15,7 @@ const EditJob = () => {
     console.log(jobData);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/jobs/`)
+        axios.get(`http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/jobs/`)
             .then(data => {
                 const specificJobData = data.data?.find(data => data._id === id)
                 console.log(specificJobData);
@@ -41,7 +41,7 @@ const EditJob = () => {
 
         const addData = { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn }
 
-        axios.patch(`http://localhost:5000/jobs/${id}`, addData)
+        axios.patch(`http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/jobs/${id}`, addData)
             .then((data) => {
                 console.log(data);
                 if (data.data.insertedId) {
