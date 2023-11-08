@@ -19,7 +19,7 @@ const Jobs = () => {
 
             <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 p-10  gap-4 mx-auto container">
                 {
-                    jobs.map(job => <SingleJob key={job.id} >job={job}</SingleJob>)
+                    jobs.map(job => <SingleJob key={job._id} >job={job}</SingleJob>)
                 }
             </div>
         </div>

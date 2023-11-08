@@ -11,6 +11,8 @@ import MyJobs from "../pages/MyJobs";
 import Blogs from "../pages/Blogs";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import DetailJob from "../pages/DetailJob";
+import EditJob from "../pages/EditJob";
 
 
 const router = createBrowserRouter([
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/job/:id',
+                element:<DetailJob></DetailJob>,
+            },
+            {
+                path: '/editJob/:id',
+                element:<EditJob></EditJob>,
             }
         ]
     },

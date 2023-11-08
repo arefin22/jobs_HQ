@@ -17,15 +17,15 @@ const JobsSectionHomePage = () => {
 
     const jobTabs = <>
         <Tab value='All' className='min-w-[120px] p-6 rounded-full'>All</Tab>
-        <Tab value='Full Time' className='p-6 hover:outline-red-100 rounded-full'>Full Time Job</Tab>
-        <Tab value='Remote' className='p-6 hover:outline-red-100 rounded-full'>Remote Job</Tab>
+        <Tab value='On Site' className='p-6 hover:outline-red-100 rounded-full'>On Site</Tab>
+        <Tab value='Remote' className='p-6 hover:outline-red-100 rounded-full'>Remote</Tab>
         <Tab value='Hybrid' className='p-6 hover:outline-red-100 rounded-full'>Hybrid</Tab>
         <Tab value='Part Time' className='p-6 hover:outline-red-100 rounded-full'>Part Time</Tab>
     </>
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9
+    const itemsPerPage = 6
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -47,7 +47,7 @@ const JobsSectionHomePage = () => {
             <TabPanel>
                 <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
-                        currentJobs?.map(jobData => <SingleJob key={jobData.id} >jobData={jobData}</SingleJob>)
+                        currentJobs?.map(jobData => <SingleJob key={jobData._id} >jobData={jobData}</SingleJob>)
                     }
                 </div>
                 <div className="pagination mx-auto p-7 text-center">
@@ -65,28 +65,28 @@ const JobsSectionHomePage = () => {
             <TabPanel>
                 <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
-                        jobsData?.filter(jobData => jobData?.jobType === 'Full Time').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
+                        jobsData?.filter(jobData => jobData?.jobCategory === 'On Site').map(job => <SingleJob key={job._id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>
             <TabPanel>
                 <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
-                        jobsData?.filter(jobData => jobData?.jobType === 'Remote').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
+                        jobsData?.filter(jobData => jobData?.jobCategory === 'Remote').map(job => <SingleJob key={job._id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>
             <TabPanel>
                 <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
-                        jobsData?.filter(jobData => jobData?.jobType === 'Hybrid').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
+                        jobsData?.filter(jobData => jobData?.jobCategory === 'Hybrid').map(job => <SingleJob key={job._id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>
             <TabPanel>
                 <div className='grid md:grid-cols-3 p-5 gap-4 container mx-auto'>
                     {
-                        jobsData?.filter(jobData => jobData?.jobType === 'Part Time').map(job => <SingleJob key={job.id} >jobData={job}</SingleJob>)
+                        jobsData?.filter(jobData => jobData?.jobCategory === 'Part Time').map(job => <SingleJob key={job._id} >jobData={job}</SingleJob>)
                     }
                 </div>
             </TabPanel>

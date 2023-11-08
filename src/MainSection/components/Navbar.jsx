@@ -1,12 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import { BsSun, BsFillMoonFill } from 'react-icons/bs'
 import { useTheme } from "../hooks/useTheme";
+import { useContext } from "react";
+import { AuthContext } from "../auth/AuthProvider";
 
 
 const Navbar = () => {
 
 
-    const user = 0
+    const {user , signOutFromSite} = useContext(AuthContext)
 
     const navLinks = <>
         <NavLink className="mr-5 hover:text-gray-900 " to={'/'}>Home</NavLink>
@@ -48,7 +50,7 @@ const Navbar = () => {
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white dark:bg-slate-900 rounded-box w-52">
                                     <li><a>Settings</a></li>
-                                    <li><a>Logout</a></li>
+                                    <li><a onClick={signOutFromSite}>Logout</a></li>
                                 </ul>
                             </div>
                             :
