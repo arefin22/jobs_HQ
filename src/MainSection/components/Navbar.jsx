@@ -8,30 +8,35 @@ import axios from "axios";
 
 const Navbar = () => {
 
-    const [currentUser , setCurrentUser] = useState(null)
+    const [currentUser, setCurrentUser] = useState(null)
+
 
     axios.get('https://job-s-hq-server.vercel.app/user')
-    .then(res => {
-        // if(res._id){
-        //     const photo = res.photo;
-        //     console.log(photo);
-        // }
-        const currentUserFind = res?.data.find(data => data.email === user?.email)
-        setCurrentUser(currentUserFind);
+        .then(res => {
+            // if(res._id){
+            //     const photo = res.photo;
+            //     console.log(photo);
+            // }
+            const currentUserFind = res?.data.find(data => data.email === user?.email)
+            setCurrentUser(currentUserFind);
 
-        // console.log(res.data.find(data => data.email === user.email));
-    })
+            // console.log(res.data.find(data => data.email === user.email));
+        })
 
-    const {user , signOutFromSite} = useContext(AuthContext)
+    const { user, signOutFromSite } = useContext(AuthContext)
 
     // console.log(user);
 
     const navLinks = <>
         <NavLink className="mr-5 hover:text-gray-900 " to={'/'}>Home</NavLink>
         <NavLink className="mr-5 hover:text-gray-900 " to={'/jobs'}>All Jobs</NavLink>
-        <NavLink className="mr-5 hover:text-gray-900 " to={'/appliedJobs'}>Applied Jobs</NavLink>
-        <NavLink className="mr-5 hover:text-gray-900 " to={'/addJob'}>Add A Job</NavLink>
-        <NavLink className="mr-5 hover:text-gray-900 " to={'/myJobs'}>My Jobs</NavLink>
+        {
+            user ? <>
+                <NavLink className="mr-5 hover:text-gray-900 " to={'/appliedJobs'}>Applied Jobs</NavLink>
+                <NavLink className="mr-5 hover:text-gray-900 " to={'/addJob'}>Add A Job</NavLink>
+                <NavLink className="mr-5 hover:text-gray-900 " to={'/myJobs'}>My Jobs</NavLink>
+            </>: ''
+        }
         <NavLink className="mr-5 hover:text-gray-900 " to={'/blogs'}>Blogs</NavLink>
     </>
 
