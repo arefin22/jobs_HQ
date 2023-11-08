@@ -44,12 +44,17 @@ const DetailJob = () => {
             })
     }, [user?.email])
 
-    useEffect(()=>{
-        axios.get('http://localhost:5000/applications')
-        .then(data => {
-            console.log(data.data.map(sdata => sdata._id));
-        })
-    },[])
+    // useEffect(() => {
+    //     axios.get('http://localhost:5000/applications')
+    //         .then(data => {
+    //             data.data.map(sdata => {
+    //                 if (sdata.email !== user?.email) {
+    //                     console.log(sdata)
+    //                 }
+    //                 console.log('No');
+    //             })
+    //         })
+    // }, [user?.email])
 
     const handleSubmitApplication = e => {
         e.preventDefault()
@@ -57,19 +62,17 @@ const DetailJob = () => {
         const userName = from.userName.value
         const email = from.userEmail.value
         const resume = from.resumeUrl.value
-        const applicationData = {userName, email, resume}
-        console.log(applicationData);
-
-
+        const applicationData = { userName, email, resume , jobData}
         
+        axios.post('http://localhost:5000/applications', applicationData)
+            .then(data => {
+                if (data.data.insertedId) {
+                    toast('Application Successful')
+                    from.reset()
+                }
+            })
 
-        axios.post('http://localhost:5000/applications', applicationData)   
-        .then(data => {
-            if(data.data.insertedId){
-                toast('Application Successful')
-                from.reset()
-            }
-        })
+
     }
 
     return (
