@@ -1,4 +1,5 @@
 import AboutUs from '../components/AboutUs'
+import FeedBack from '../components/FeedBack'
 import Hero from '../components/Hero'
 import JobsSectionHomePage from '../components/JobsSectionHomePage'
 
@@ -10,6 +11,7 @@ function App() {
       <Hero></Hero>
       <JobsSectionHomePage></JobsSectionHomePage>
       <AboutUs></AboutUs>
+      <FeedBack></FeedBack>
     </div>
   )
 }
