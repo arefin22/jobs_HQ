@@ -95,7 +95,6 @@ const EditJob = () => {
                                 <div className="p-2 w-1/2">
                                     <div className="relative flex flex-col">
                                         <label htmlFor="postedon" className="leading-7 text-sm text-gray-600">Posted On</label>
-                                        {/* <input type="date" id="postedon" name="postedon" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" /> */}
                                         <DatePicker selected={postedOn} defaultValue={jobData?.postedOn} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={(date) => setPostedOn(date)} />
                                     </div>
                                 </div>
@@ -103,7 +102,6 @@ const EditJob = () => {
                                 <div className="p-2 w-1/2">
                                     <div className="relative flex flex-col">
                                         <label htmlFor="postedby" className="leading-7 text-sm text-gray-600">Expires On</label>
-                                        {/* <input type="date" id="postedby" name="postedby" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" /> */}
                                         <DatePicker selected={expiresOn} defaultValue={jobData?.expiresOn} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={(date) => setExpiresOn(date)} />
                                     </div>
                                 </div>
