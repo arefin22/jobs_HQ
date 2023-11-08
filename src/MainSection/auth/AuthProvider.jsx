@@ -5,6 +5,7 @@ import auth from "./firebase.config"
 import { toast } from "react-toastify";
 
 
+
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {

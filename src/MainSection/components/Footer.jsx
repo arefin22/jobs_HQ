@@ -1,44 +1,50 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
+import { useContext } from "react";
+import { AuthContext } from "../auth/AuthProvider";
 
 
 
 
 const Footer = () => {
     const { mode } = useTheme()
+    const { user } = useContext(AuthContext)
+
+    const navLinks = <>
+        <NavLink className="mr-5 hover:text-gray-900 " to={'/'}>Home</NavLink>
+        <NavLink className="mr-5 hover:text-gray-900 " to={'/jobs'}>All Jobs</NavLink>
+        {
+            user ? <>
+                <NavLink className="mr-5 hover:text-gray-900 " to={'/appliedJobs'}>Applied Jobs</NavLink>
+                <NavLink className="mr-5 hover:text-gray-900 " to={'/addJob'}>Add A Job</NavLink>
+                <NavLink className="mr-5 hover:text-gray-900 " to={'/myJobs'}>My Jobs</NavLink>
+            </> : ''
+        }
+        <NavLink className="mr-5 hover:text-gray-900 " to={'/blogs'}>Blogs</NavLink>
+    </>
     return (
         <footer className="text-slate-800 bg-white mx-auto drop-shadow-2xl dark:bg-slate-800 dark:text-slate-200 body-font">
-            <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-                <div className="w-64 flex-shrink-0 md:mx-0 justify-end mx-auto text-center md:text-center">
-                    <Link to={'/'} className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                        {
-                            mode === 'light' ?
-                                <img src="https://i.ibb.co/sRFwWh7/logggooo-02.png" className="h-20" alt="" />
-                                :
-                                <img src="https://i.ibb.co/8bkmChn/logggooo-01.png" className="h-20" alt="" />
-                        }
-                    </Link>
-                </div>
-                <div className="flex-grow flex flex-wrap md:pl-20 gap-12 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-                    <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                    <p className="mt-2 text-sm text-gray-500">Find your ideal job, whether you prefer the flexibility of remote work or the collaborative environment of onsite placements!</p>
+            <div className="container px-5 py-24 mx-auto flex md:items-center justify-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+                <div className="flex w-4/6 flex-col-reverse justify-center items-center md:flex-row">
+                    <div className="lg:w-1/4 md:w-1/2 w-full">
+                        <p className="text-sm text-gray-500">Find your ideal job, whether you prefer the flexibility of remote work or the collaborative environment of onsite placements!</p>
                     </div>
-                    
-                    <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                        <h2 className="title-font font-medium text-slate-900 dark:text-slate-200  tracking-widest text-sm mb-3">CATEGORIES</h2>
-                        <nav className="list-none mb-10">
-                            <li>
-                                <a className="text-slate-800 dark:text-slate-200 hover:text-gray-800">First Link</a>
-                            </li>
-                            <li>
-                                <a className="text-slate-800 dark:text-slate-200 hover:text-gray-800">Second Link</a>
-                            </li>
-                            <li>
-                                <a className="text-slate-800 dark:text-slate-200 hover:text-gray-800">Third Link</a>
-                            </li>
-                            <li>
-                                <a className="text-slate-800 dark:text-slate-200 hover:text-gray-800">Fourth Link</a>
-                            </li>
+                    <div className="lg:w-3/4 flex justify-center mx-auto text-center md:text-center">
+                        <Link to={'/'} className="flex title-font font-medium items-center mx-auto text-gray-900 mb-4 md:mb-0">
+                            {
+                                mode === 'light' ?
+                                    <img src="https://i.ibb.co/sRFwWh7/logggooo-02.png" className="h-40" alt="" />
+                                    :
+                                    <img src="https://i.ibb.co/8bkmChn/logggooo-01.png" className="h-40" alt="" />
+                            }
+                        </Link>
+                    </div>
+                </div>
+                <div className="w-2/6 flex justify-center md:text-left text-center">
+                    <div className=" w-full px-4">
+                        <h2 className="title-font text-center font-medium text-slate-900 dark:text-slate-200 underline text-xl tracking-widest mb-3">Pages</h2>
+                        <nav className="grid grid-cols-2 text-center md:w-2/4 mx-auto gap-2 ">
+                            {navLinks}
                         </nav>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ const Login = () => {
             .then(result => {
                 const loggedInUser = result.user
                 console.log(loggedInUser);
-                navigate(location?.state ? location.state : '/')
+                navigate(location?.state ? location?.state : '/')
                 const user = { email }
                 axios.post('https://jobs-hq-server.vercel.app/jwt', user)
                     .then(res => {
@@ -30,11 +30,11 @@ const Login = () => {
             })
             .catch(err => toast('Invalid Email or Password', err))
     }
-    const handleGoogleLogin = () => {
-        signInUsingPopup()
-        navigate(location?.state ? location.state : '/')
+    // const handleGoogleLogin = () => {
+    //     signInUsingPopup
+    //     // navigate(location?.state ? location.state : '/')
         
-    }
+    // }
 
 
     return (
@@ -63,7 +63,7 @@ const Login = () => {
                     </form>
                     <div className="w-full pt-4">
                         <hr />
-                        <button className="mt-4 w-full text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" onClick={handleGoogleLogin}>Log In Using Google</button>
+                        <button className="mt-4 w-full text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" onClick={signInUsingPopup}>Log In Using Google</button>
                     </div>
                 </div>
             </div>

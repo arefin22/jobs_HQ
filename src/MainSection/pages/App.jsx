@@ -1,5 +1,6 @@
 import AboutUs from '../components/AboutUs'
-import FeedBack from '../components/FeedBack'
+import Ads from '../components/Ads'
+// import FeedBack from '../components/FeedBack'
 import Hero from '../components/Hero'
 import JobsSectionHomePage from '../components/JobsSectionHomePage'
 
@@ -11,7 +12,8 @@ function App() {
       <Hero></Hero>
       <JobsSectionHomePage></JobsSectionHomePage>
       <AboutUs></AboutUs>
-      <FeedBack></FeedBack>
+      {/* <FeedBack></FeedBack> */}
+      <Ads></Ads>
     </div>
   )
 }
