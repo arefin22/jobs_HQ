@@ -23,7 +23,7 @@ const AddJob = () => {
 
         const addData = { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn }
 
-        axios.post('https://job-s-hq-server.vercel.app/jobs', addData)
+        axios.post('https://jobs-hq-server.vercel.app/jobs', addData)
             .then((data) => {
                 console.log(data);
                 if (data.data.insertedId) {

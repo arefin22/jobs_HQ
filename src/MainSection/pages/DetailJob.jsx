@@ -22,7 +22,7 @@ const DetailJob = () => {
 
 
     useEffect(() => {
-        axios.get('https://job-s-hq-server.vercel.app/jobs')
+        axios.get('https://jobs-hq-server.vercel.app/jobs')
             .then(data => {
                 const specificJobData = data.data?.find(data => data._id === id)
                 // console.log(specificJobData);
@@ -31,7 +31,7 @@ const DetailJob = () => {
     }, [id])
 
     useEffect(() => {
-        axios.get('https://job-s-hq-server.vercel.app/user')
+        axios.get('https://jobs-hq-server.vercel.app/user')
             .then(data => {
                 // console.log(data.data);
                 const aData = data.data
@@ -45,7 +45,7 @@ const DetailJob = () => {
     }, [user?.email])
 
     // useEffect(() => {
-    //     axios.get('https://job-s-hq-server.vercel.app/applications')
+    //     axios.get('https://jobs-hq-server.vercel.app/applications')
     //         .then(data => {
     //             data.data.map(sdata => {
     //                 if (sdata.email !== user?.email) {
@@ -64,7 +64,7 @@ const DetailJob = () => {
         const resume = from.resumeUrl.value
         const applicationData = { userName, email, resume , jobData}
         
-        axios.post('https://job-s-hq-server.vercel.app/applications', applicationData)
+        axios.post('https://jobs-hq-server.vercel.app/applications', applicationData)
             .then(data => {
                 if (data.data.insertedId) {
                     toast('Application Successful')

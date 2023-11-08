@@ -10,7 +10,7 @@ const AppliedJobs = () => {
     const {user} = useContext(AuthContext)
 
     // console.log(user?.email);
-    const url = `https://job-s-hq-server.vercel.app/applications?email=${user?.email}`
+    const url = `https://jobs-hq-server.vercel.app/applications?email=${user?.email}`
 
     // console.log(appliedData);
 

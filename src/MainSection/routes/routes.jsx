@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             {
                 path: '/jobs',
                 element: <Jobs></Jobs>,
-                loader : () => fetch('https://job-s-hq-server.vercel.app/jobs')
+                loader : () => fetch('https://jobs-hq-server.vercel.app/jobs')
             },
             {
                 path:'/addJob',

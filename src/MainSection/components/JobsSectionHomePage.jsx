@@ -10,7 +10,7 @@ const JobsSectionHomePage = () => {
     const [jobTypeFilter, setJobTypeFilter] = useState('All');
     // console.log(jobsData);
     useEffect(() => {
-        fetch('https://job-s-hq-server.vercel.app/jobs')
+        fetch('https://jobs-hq-server.vercel.app/jobs')
             .then(res => res.json())
             .then(data => setjobsData(data))
     }, [])
