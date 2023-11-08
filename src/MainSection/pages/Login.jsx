@@ -22,7 +22,7 @@ const Login = () => {
                 console.log(loggedInUser);
                 navigate(location?.state ? location.state : '/')
                 const user = { email }
-                axios.post('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/jwt', user)
+                axios.post('https://job-s-hq-server.vercel.app/jwt', user)
                     .then(res => {
                         console.log(res);
                         toast('Log In Successful', res)

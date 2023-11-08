@@ -13,6 +13,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import DetailJob from "../pages/DetailJob";
 import EditJob from "../pages/EditJob";
+import PrivateRoute from "../auth/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -28,19 +29,19 @@ const router = createBrowserRouter([
             {
                 path: '/jobs',
                 element: <Jobs></Jobs>,
-                loader : () => fetch('http://job-s-hq-server-dxm4akgji-shamsul-arefins-projects.vercel.app/jobs')
+                loader : () => fetch('https://job-s-hq-server.vercel.app/jobs')
             },
             {
                 path:'/addJob',
-                element: <AddJob></AddJob>
+                element: <PrivateRoute><AddJob></AddJob></PrivateRoute>
             },
             {
                 path:'/appliedJobs',
-                element: <AppliedJobs></AppliedJobs>
+                element: <PrivateRoute><AppliedJobs></AppliedJobs></PrivateRoute>
             },
             {
                 path: '/myJobs',
-                element: <MyJobs></MyJobs>
+                element: <PrivateRoute><MyJobs></MyJobs></PrivateRoute>
             },
             {
                 path: '/blogs',
