@@ -30,9 +30,10 @@ const Login = () => {
             })
             .catch(err => toast('Invalid Email or Password', err))
     }
-    const handleGoogleLogin =() =>{
+    const handleGoogleLogin = () => {
         signInUsingPopup()
         navigate(location?.state ? location.state : '/')
+        
     }
 
 

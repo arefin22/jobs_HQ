@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
 import { MdOutlineEmojiPeople, MdEditCalendar, MdOutlineAttachMoney } from "react-icons/md";
 import axios from "axios";
+import { AuthContext } from "../auth/AuthProvider";
+import { toast } from "react-toastify";
 
 
 const DetailJob = () => {
     const { id } = useParams()
     const [jobData, setJobData] = useState(null)
+    const { user } = useContext(AuthContext)
+    const [singleUserData, setSingleUserData] = useState(null)
 
-    console.log(jobData);
+    // console.log(singleUserData?.name);
+    // console.log(jobData);
     // const { jobTitle, jobType, postedBy, postingDate, salaryRange, applicantsNumber, applicationDeadline } = jobDat
 
     // const { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn } = jobData
@@ -20,10 +25,52 @@ const DetailJob = () => {
         axios.get('http://localhost:5000/jobs')
             .then(data => {
                 const specificJobData = data.data?.find(data => data._id === id)
-                console.log(specificJobData);
+                // console.log(specificJobData);
                 setJobData(specificJobData);
             })
     }, [id])
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/user')
+            .then(data => {
+                // console.log(data.data);
+                const aData = data.data
+                const userData = aData.find(ss => ss.email === user?.email)
+                setSingleUserData(userData);
+                // console.log(userData?.email);
+                // console.log('User Data email',user?.email);
+                // const singleData = aData.find(aData?.email === user?.email)
+                // console.log(singleData);
+            })
+    }, [user?.email])
+
+    useEffect(()=>{
+        axios.get('http://localhost:5000/applications')
+        .then(data => {
+            console.log(data.data.map(sdata => sdata._id));
+        })
+    },[])
+
+    const handleSubmitApplication = e => {
+        e.preventDefault()
+        const from = e.target
+        const userName = from.userName.value
+        const email = from.userEmail.value
+        const resume = from.resumeUrl.value
+        const applicationData = {userName, email, resume}
+        console.log(applicationData);
+
+
+        
+
+        axios.post('http://localhost:5000/applications', applicationData)   
+        .then(data => {
+            if(data.data.insertedId){
+                toast('Application Successful')
+                from.reset()
+            }
+        })
+    }
 
     return (
 
@@ -62,7 +109,43 @@ const DetailJob = () => {
                             <p className="leading-relaxed text-lg mb-4">{jobData?.description}</p>
                             <div className="flex flex-col">
                                 <Link to={`/editJob/${jobData?._id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
-                                <Link className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Apply Now  &rarr;</Link>
+                                {/* <Link className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Apply Now  &rarr;</Link> */}
+                                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                <button className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" onClick={() => document.getElementById('my_modal_5').showModal()}>Apply Now  &rarr;</button>
+                                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                    <div className="modal-box">
+                                        <h3 className="font-bold text-lg">Apply Now!</h3>
+                                        <form onSubmit={handleSubmitApplication}>
+                                            <div className="p-2 w-full">
+                                                {/* User Name */}
+                                                <div className="relative">
+                                                    <label htmlFor="userName" className="leading-7 text-sm text-gray-600">User Name</label>
+                                                    <input type="text" id="userName" readOnly defaultValue={user?.displayName || singleUserData?.name} name="userName" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                                {/* Email Name */}
+                                                <div className="relative">
+                                                    <label htmlFor="userEmail" className="leading-7 text-sm text-gray-600">Email Name</label>
+                                                    <input type="email" id="userEmail" readOnly defaultValue={user?.email} name="userEmail" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                                {/* Resume Name */}
+                                                <div className="relative">
+                                                    <label htmlFor="resumeUrl" className="leading-7 text-sm text-gray-600">Resume URL</label>
+                                                    <input type="text" id="resumeUrl" placeholder="Your Resume Link Here..." name="resumeUrl" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 text-slate-950 placeholder:text-slate-800 focus:ring-indigo-200 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                </div>
+                                                {/* Submit Button */}
+                                                <div className="relative">
+                                                    <button className="btn btn-accent w-full my-5" type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div className="modal-action">
+                                            <form method="dialog">
+                                                {/* if there is a button in form, it will close the modal */}
+                                                <button className="btn">Close</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </dialog>
                             </div>
                         </div>
                     </div>

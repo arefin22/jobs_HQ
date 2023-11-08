@@ -8,20 +8,23 @@ import axios from "axios";
 
 const Navbar = () => {
 
-    const [currentUserr , setCurrentUserr] = useState(null)
+    const [currentUser , setCurrentUser] = useState(null)
 
-    axios.get('http://localhost:5000/user').then(res => {
+    axios.get('http://localhost:5000/user')
+    .then(res => {
         // if(res._id){
         //     const photo = res.photo;
         //     console.log(photo);
         // }
-        const currentUser = res?.data?.find(data => data?.email === user?.email)
-        setCurrentUserr(currentUser);
+        const currentUserFind = res?.data.find(data => data.email === user?.email)
+        setCurrentUser(currentUserFind);
 
         // console.log(res.data.find(data => data.email === user.email));
     })
 
     const {user , signOutFromSite} = useContext(AuthContext)
+
+    // console.log(user);
 
     const navLinks = <>
         <NavLink className="mr-5 hover:text-gray-900 " to={'/'}>Home</NavLink>
@@ -58,7 +61,7 @@ const Navbar = () => {
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
-                                        <img src={currentUserr?.photo || user.photo || user.photoURL} />
+                                        <img src={currentUser?.photo || user.photoURL} />
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white dark:bg-slate-900 rounded-box w-52">
