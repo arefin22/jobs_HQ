@@ -14,7 +14,11 @@ const DetailJob = () => {
     const [singleUserData, setSingleUserData] = useState(null)
 
     // console.log(singleUserData?.name);
-    // console.log(jobData);
+    console.log(user);
+    console.log("Job Data here", jobData);
+    // console.log("Single User Data",singleUserData);
+    console.log(jobData?.userEmail !== user?.email ? 'New User' : 'old User');
+
     // const { jobTitle, jobType, postedBy, postingDate, salaryRange, applicantsNumber, applicationDeadline } = jobDat
 
     // const { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn } = jobData
@@ -60,10 +64,10 @@ const DetailJob = () => {
         e.preventDefault()
         const from = e.target
         const userName = from.userName.value
-        const email = from.userEmail.value
+        const email = user?.email
         const resume = from.resumeUrl.value
-        const applicationData = { userName, email, resume , jobData}
-        
+        const applicationData = { userName, email, resume, jobData }
+
         axios.post('https://jobs-hq-server.vercel.app/applications', applicationData)
             .then(data => {
                 if (data.data.insertedId) {
@@ -87,6 +91,9 @@ const DetailJob = () => {
                         <div className="sm:w-1/3 sm:pr-8 sm:py-8">
                             {/* jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn */}
                             <div className="flex flex-col items-center justify-end">
+                                <div className="w-10 rounded-full">
+                                    <img src={jobData?.logo} />
+                                </div>
                                 <h2 className="font-medium title-font mt-4 text-gray-900 dark:text-white text-lg">{jobData?.jobTitle}</h2>
                                 <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                                 <p className="text-base">{jobData?.postedBy}</p>
@@ -111,44 +118,49 @@ const DetailJob = () => {
                         <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
                             <p className="leading-relaxed text-lg mb-4">{jobData?.description}</p>
                             <div className="flex flex-col">
-                                <Link to={`/editJob/${jobData?._id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
-                                {/* <Link className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Apply Now  &rarr;</Link> */}
-                                {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                <button className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" onClick={() => document.getElementById('my_modal_5').showModal()}>Apply Now  &rarr;</button>
-                                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                                    <div className="modal-box">
-                                        <h3 className="font-bold text-lg">Apply Now!</h3>
-                                        <form onSubmit={handleSubmitApplication}>
-                                            <div className="p-2 w-full">
-                                                {/* User Name */}
-                                                <div className="relative">
-                                                    <label htmlFor="userName" className="leading-7 text-sm text-gray-600">User Name</label>
-                                                    <input type="text" id="userName" readOnly defaultValue={user?.displayName || singleUserData?.name} name="userName" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                {
+                                    jobData?.userEmail !== user?.email ?
+
+                                        <div>
+                                            <button className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" onClick={() => document.getElementById('my_modal_5').showModal()}>Apply Now  &rarr;</button>
+                                            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                                                <div className="modal-box">
+                                                    <h3 className="font-bold text-lg">Apply Now!</h3>
+                                                    <form onSubmit={handleSubmitApplication}>
+                                                        <div className="p-2 w-full">
+                                                            {/* User Name */}
+                                                            <div className="relative">
+                                                                <label htmlFor="userName" className="leading-7 text-sm text-gray-600">User Name</label>
+                                                                <input type="text" id="userName" readOnly defaultValue={user?.displayName || singleUserData?.name} name="userName" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                            </div>
+                                                            {/* Email Name */}
+                                                            <div className="relative">
+                                                                <label htmlFor="userEmail" className="leading-7 text-sm text-gray-600">Email Name</label>
+                                                                <input type="email" id="userEmail" readOnly defaultValue={user?.email} name="userEmail" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                            </div>
+                                                            {/* Resume Name */}
+                                                            <div className="relative">
+                                                                <label htmlFor="resumeUrl" className="leading-7 text-sm text-gray-600">Resume URL</label>
+                                                                <input type="text" id="resumeUrl" placeholder="Your Resume Link Here..." name="resumeUrl" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 text-slate-950 placeholder:text-slate-800 focus:ring-indigo-200 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                                            </div>
+                                                            {/* Submit Button */}
+                                                            <div className="relative">
+                                                                <button className="btn btn-accent w-full my-5" type="submit">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <div className="modal-action">
+                                                        <form method="dialog">
+                                                            {/* if there is a button in form, it will close the modal */}
+                                                            <button className="btn">Close</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                                {/* Email Name */}
-                                                <div className="relative">
-                                                    <label htmlFor="userEmail" className="leading-7 text-sm text-gray-600">Email Name</label>
-                                                    <input type="email" id="userEmail" readOnly defaultValue={user?.email} name="userEmail" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-500 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                                </div>
-                                                {/* Resume Name */}
-                                                <div className="relative">
-                                                    <label htmlFor="resumeUrl" className="leading-7 text-sm text-gray-600">Resume URL</label>
-                                                    <input type="text" id="resumeUrl" placeholder="Your Resume Link Here..." name="resumeUrl" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 text-slate-950 placeholder:text-slate-800 focus:ring-indigo-200 text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                                                </div>
-                                                {/* Submit Button */}
-                                                <div className="relative">
-                                                    <button className="btn btn-accent w-full my-5" type="submit">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <div className="modal-action">
-                                            <form method="dialog">
-                                                {/* if there is a button in form, it will close the modal */}
-                                                <button className="btn">Close</button>
-                                            </form>
+                                            </dialog>
                                         </div>
-                                    </div>
-                                </dialog>
+                                        :
+                                        <Link to={`/editJob/${jobData?._id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
+                                }
                             </div>
                         </div>
                     </div>

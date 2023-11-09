@@ -36,15 +36,15 @@ const EditJob = () => {
         const salaryTo = parseInt(form.to.value);
         const jobCategory = form.jobCategory.value;
         const photoUrl = form.photoUrl.value;
-        const applicant = parseInt(form.applicant.value);
+        const logo = form.logo.value;
         const description = form.description.value;
 
-        const addData = { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn }
+        const addData = { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, logo, description, postedOn, expiresOn }
 
         axios.patch(`https://jobs-hq-server.vercel.app/jobs/${id}`, addData)
             .then((data) => {
                 console.log(data);
-                if (data.data.insertedId) {
+                if (data.data.modifiedCount) {
                     toast('Item Edited Successfully')
                     // form.reset()
                 }
@@ -129,8 +129,8 @@ const EditJob = () => {
                                 {/* Applicant Count */}
                                 <div className="p-2 w-1/2">
                                     <div className="relative flex flex-col">
-                                        <label htmlFor="applicant" className="leading-7 text-sm text-gray-600">Applicant Count</label>
-                                        <input type="text" id="applicant" name="applicant" defaultValue={jobData?.applicant} disabled className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                        <label htmlFor="logo" className="leading-7 text-sm text-gray-600">Logo URL</label>
+                                        <input type="text" id="logo" name="logo" defaultValue={jobData?.logo} className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
                                 </div>
 

@@ -1,13 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
+import { AuthContext } from "../auth/AuthProvider";
 
 const AddJob = () => {
 
     const [expiresOn, setExpiresOn] = useState(new Date());
     const [postedOn, setPostedOn] = useState(new Date());
+
+    const {user} = useContext(AuthContext);
+
+    // console.log(user?.email);
 
     const handleAddItem = (e) => {
         e.preventDefault()
@@ -18,10 +23,11 @@ const AddJob = () => {
         const salaryTo = parseInt(form.to.value);
         const jobCategory = form.jobCategory.value;
         const photoUrl = form.photoUrl.value;
-        const applicant = parseInt(form.applicant.value);
+        const logo = form.logo.value;
         const description = form.description.value;
+        const userEmail = user?.email
 
-        const addData = { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn }
+        const addData = { jobTitle, postedBy, salaryFrom, userEmail, salaryTo, jobCategory, photoUrl, logo, description, postedOn, expiresOn }
 
         axios.post('https://jobs-hq-server.vercel.app/jobs', addData)
             .then((data) => {
@@ -109,11 +115,11 @@ const AddJob = () => {
                                     </div>
                                 </div>
 
-                                {/* Applicant Count */}
+                                {/* Logo */}
                                 <div className="p-2 w-1/2">
                                     <div className="relative flex flex-col">
-                                        <label htmlFor="applicant" className="leading-7 text-sm text-gray-600">Applicant Count</label>
-                                        <input type="text" id="applicant" name="applicant" defaultValue="0" disabled className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                        <label htmlFor="logo" className="leading-7 text-sm text-gray-600">Logo URL</label>
+                                        <input type="text" id="logo" name="logo" className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
                                 </div>
 
