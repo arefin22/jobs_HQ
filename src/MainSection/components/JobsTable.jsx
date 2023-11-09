@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 
 const JobsTable = (job) => {
-    console.log(job);
+    // console.log(job);
     // const { _id, jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, applicant, postedOn, expiresOn } = job.children[1]
     const {_id, jobTitle, postedBy, salaryFrom, salaryTo, postedOn, expiresOn, photoUrl } = job.data
     return (

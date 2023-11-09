@@ -13,12 +13,12 @@ const MyTableRow = ({ data }) => {
     const handleDelete = id => {
         console.log(id);
         axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.error("Error deleting job:", error);
-                });
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error("Error deleting job:", error);
+            });
         // console.log(id);
         // Swal.fire({
         //     title: "Are you sure?",
@@ -35,7 +35,7 @@ const MyTableRow = ({ data }) => {
         //             text: "Your file has been deleted.",
         //             icon: "success"
         //         });
-                
+
         //     }
         // });
         // if (process) {
@@ -69,7 +69,7 @@ const MyTableRow = ({ data }) => {
             </td>
             <td>{resume}</td>
             <th>
-                <Link className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" to={`/job/${_id}`}>View Details &rarr;</Link>
+                <Link to={`/editJob/${_id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
                 <button onClick={() => handleDelete(_id)} className="btn ml-3 btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Delete Job  <RiDeleteBin5Line /></button>
             </th>
         </tr>

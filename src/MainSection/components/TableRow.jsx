@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 
 const TableRow = ({ data }) => {
 
 const {resume, jobData} = data
-const {photoUrl, jobTitle, expiresOn} = jobData
+const {_id, photoUrl, jobTitle, expiresOn, jobCategory} = jobData
 // console.log(resume, photoUrl, jobTitle, expiresOn);
+// console.log(jobData);
     return (
         <tr>
             <td>
@@ -21,11 +24,14 @@ const {photoUrl, jobTitle, expiresOn} = jobData
                 </div>
             </td>
             <td>
+                {jobCategory}
+            </td>
+            <td>
                 {expiresOn.slice(0,10)}
             </td>
             <td>{resume}</td>
             <th>
-                <button className="btn btn-ghost btn-xs">details</button>
+            <Link className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" to={`/job/${_id}`}>View Details &rarr;</Link>
             </th>
         </tr>
     );

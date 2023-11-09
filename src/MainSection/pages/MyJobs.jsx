@@ -14,12 +14,12 @@ const MyJobs = () => {
 
     // console.log(user?.email);
     // const url = `https://jobs-hq-server.vercel.app/jobs?userEmail=${user?.email}`
-    // const url = `http://localhost:5000/jobs?userEmail=${user?.email}`
+    // const url = `https://jobs-hq-server.vercel.app/jobs?userEmail=${user?.email}`
 
     // console.log(appliedData);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/jobs/${user?.email}`)
+        axios.get(`https://jobs-hq-server.vercel.app/jobs/${user?.email}`)
             .then(data => setMyJobs(data.data))
 
     }, [user?.email])
@@ -34,6 +34,8 @@ const MyJobs = () => {
                 <title>JOBsHQ | My Jobs</title>
                 <meta name='description' content='Beginner friendly page for learning React Helmet.' />
             </Helmet>
+
+            <h2 className="text-5xl text-center font-bold p-4 text-slate-900 dark:text-white">My Jobs</h2>
             <div className="overflow-x-auto container mx-auto my-9">
                 <table className="table">
                     {/* head */}
