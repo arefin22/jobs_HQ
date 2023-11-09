@@ -26,9 +26,9 @@ const Jobs = () => {
 
 
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const findedJobs = jobs?.slice(indexOfFirstItem, indexOfLastItem);
+    // const indexOfLastItem = currentPage * itemsPerPage;
+    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    // const findedJobs = jobs?.slice(indexOfFirstItem, indexOfLastItem);
 
     const totalPages = Math.ceil(jobsData?.length / itemsPerPage);
 
