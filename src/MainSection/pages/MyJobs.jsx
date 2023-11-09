@@ -29,7 +29,7 @@ const MyJobs = () => {
 
 
 
-        <div>
+        <div className="bg-white dark:bg-slate-900 min-h-screen">
             <Helmet>
                 <title>JOBsHQ | My Jobs</title>
                 <meta name='description' content='Beginner friendly page for learning React Helmet.' />

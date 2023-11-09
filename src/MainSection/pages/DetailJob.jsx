@@ -15,6 +15,8 @@ const DetailJob = () => {
     const { user } = useContext(AuthContext)
     const [singleUserData, setSingleUserData] = useState(null)
 
+    
+
     // console.log(singleUserData?.name);
     // console.log(user);
     // console.log("Job Data here", jobData);
@@ -144,8 +146,8 @@ const DetailJob = () => {
                                         <div>
                                             <button onClick={handleApplyClick} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" >Apply Now  &rarr;</button>
                                             {/* onClick={() => document.getElementById('my_modal_5').showModal()} */}
-                                            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-                                                <div className="modal-box">
+                                            <dialog id="my_modal_5" className="modal  modal-bottom sm:modal-middle">
+                                                <div className="modal-box bg-white dark:bg-slate-900">
                                                     <h3 className="font-bold text-lg">Apply Now!</h3>
                                                     <form onSubmit={handleSubmitApplication}>
                                                         <div className="p-2 w-full">
@@ -166,7 +168,7 @@ const DetailJob = () => {
                                                             </div>
                                                             {/* Submit Button */}
                                                             <div className="relative">
-                                                                <button className="btn btn-accent w-full my-5" type="submit">Submit</button>
+                                                                <button className="btn btn-accent btn-outline w-full my-5" type="submit">Submit</button>
                                                             </div>
                                                         </div>
                                                     </form>

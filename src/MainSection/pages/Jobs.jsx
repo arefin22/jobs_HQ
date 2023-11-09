@@ -11,6 +11,10 @@ const Jobs = () => {
     const jobs = useLoaderData()
     // console.log(jobs.length);
 
+    const [searchTerm, setSearchTerm] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6
+
     const [jobsData, setjobsData] = useState(null)
     // const [jobTypeFilter, setJobTypeFilter] = useState('All');
     // console.log(jobsData);
@@ -20,8 +24,7 @@ const Jobs = () => {
             .then(data => setjobsData(data))
     }, [])
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6
+
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -32,6 +35,17 @@ const Jobs = () => {
     const handlePaginationClick = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+        setCurrentPage(1); // Reset current page when search term changes
+    };
+
+    const filteredJobs = jobsData
+        ? jobsData?.filter((job) =>
+            job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        : [];
 
     return (
         <div className="bg-slate-100 min-h-screen dark:bg-slate-900">
@@ -45,6 +59,16 @@ const Jobs = () => {
 
             <h2 className="text-5xl text-center font-bold p-4 text-slate-900 dark:text-white">Jobs</h2>
             <p className="text-center">All Posted Jobs : {jobs.length}</p>
+
+            <div className="flex justify-center mb-4">
+                <input
+                    type="text"
+                    placeholder="Search by Job Title"
+                    className="input w-full max-w-xs"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+            </div>
             <div className="overflow-x-auto container mx-auto my-9">
                 <table className="table">
                     {/* head */}
@@ -62,7 +86,7 @@ const Jobs = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            findedJobs?.map(data => <JobsTable key={data._id} data={data}></JobsTable>)
+                            filteredJobs?.map(data => <JobsTable key={data._id} data={data}></JobsTable>)
                         }
 
                     </tbody>
