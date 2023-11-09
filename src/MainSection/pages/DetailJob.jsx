@@ -41,17 +41,22 @@ const DetailJob = () => {
     }, [user?.email])
 
 
-    // useEffect(() => {
-    //     axios.get('https://jobs-hq-server.vercel.app/applications')
-    //         .then(data => {
-    //             data.data.map(sdata => {
-    //                 if (sdata.email !== user?.email) {
-    //                     console.log(sdata)
-    //                 }
-    //                 console.log('No');
-    //             })
-    //         })
-    // }, [user?.email])
+    const isJobExpired = () => {
+        if (jobData && jobData.expiresOn) {
+            const jobExpirationDate = new Date(jobData.expiresOn);
+            const currentDate = new Date();
+            return jobExpirationDate < currentDate;
+        }
+        return false; // If jobData or expiresOn is not available, consider the job as not expired
+    };
+
+    const handleApplyClick = () => {
+        if (isJobExpired()) {
+          toast.error("This job posting has expired.");
+        } else {
+          document.getElementById("my_modal_5").showModal();
+        }
+      };
 
     const handleSubmitApplication = e => {
         e.preventDefault()
@@ -60,6 +65,12 @@ const DetailJob = () => {
         const email = user?.email
         const resume = from.resumeUrl.value
         const applicationData = { userName, email, resume, jobData }
+
+        // isJobExpired = () => {
+        //     const { jobExpiryDate } = this.state;
+        //     const currentDate = new Date().toISOString().split("T")[0]; // Get current date in "YYYY-MM-DD" format
+        //     return jobExpiryDate < currentDate;
+        //   };
 
         axios.post('https://jobs-hq-server.vercel.app/applications', applicationData)
             .then(data => {
@@ -82,6 +93,7 @@ const DetailJob = () => {
         }
 
     }
+
 
     return (
 
@@ -130,7 +142,8 @@ const DetailJob = () => {
                                     jobData?.userEmail !== user?.email ?
 
                                         <div>
-                                            <button className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" onClick={() => document.getElementById('my_modal_5').showModal()}>Apply Now  &rarr;</button>
+                                            <button onClick={handleApplyClick} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" >Apply Now  &rarr;</button>
+                                            {/* onClick={() => document.getElementById('my_modal_5').showModal()} */}
                                             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                                                 <div className="modal-box">
                                                     <h3 className="font-bold text-lg">Apply Now!</h3>

@@ -39,7 +39,7 @@ const JobsSectionHomePage = () => {
 
 
     return (
-        <Tabs className='pt-10'>
+        <Tabs className='pt-10 min-h-screen'>
             <h2 className='text-5xl font-bold text-center underline p-3 mb-6'>Job Category</h2>
             <TabList className='flex flex-col md:flex-row justify-center text-center' value={jobTypeFilter} onChange={(e) => setJobTypeFilter(e.target.value)}>
                 {jobTabs}
