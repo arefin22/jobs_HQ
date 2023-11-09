@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import axios from "axios";
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 
 const MyTableRow = ({ data }) => {
@@ -11,31 +11,33 @@ const MyTableRow = ({ data }) => {
     // const { photoUrl, jobTitle, expiresOn } = jobData
     // console.log(resume, photoUrl, jobTitle, expiresOn);
     const handleDelete = id => {
-        // console.log(id);
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-                axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
+        console.log(id);
+        axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
                 .then(response => {
                     console.log(response);
                 })
                 .catch(error => {
                     console.error("Error deleting job:", error);
                 });
-            }
-        });
+        // console.log(id);
+        // Swal.fire({
+        //     title: "Are you sure?",
+        //     text: "You won't be able to revert this!",
+        //     icon: "warning",
+        //     showCancelButton: true,
+        //     confirmButtonColor: "#3085d6",
+        //     cancelButtonColor: "#d33",
+        //     confirmButtonText: "Yes, delete it!"
+        // }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         Swal.fire({
+        //             title: "Deleted!",
+        //             text: "Your file has been deleted.",
+        //             icon: "success"
+        //         });
+                
+        //     }
+        // });
         // if (process) {
         //     axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
         //         .then(response => {
