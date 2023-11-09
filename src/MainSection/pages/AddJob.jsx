@@ -4,13 +4,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 import { AuthContext } from "../auth/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AddJob = () => {
 
     const [expiresOn, setExpiresOn] = useState(new Date());
     const [postedOn, setPostedOn] = useState(new Date());
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     // console.log(user?.email);
 
@@ -44,6 +45,10 @@ const AddJob = () => {
 
     return (
         <section className="text-gray-600 bg-white dark:text-slate-300 dark:bg-slate-900 body-font relative">
+            <Helmet>
+                <title>JOBsHQ | Add A Job</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <div className="container px-5 py-24 mx-auto">
                 <div className="card bg-slate-200 drop-shadow-xl px-4 md:px-0 dark:bg-slate-800 py-9">
                     <div className="flex flex-col text-center w-full mb-12">

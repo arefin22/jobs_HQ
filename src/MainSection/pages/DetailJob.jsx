@@ -5,6 +5,7 @@ import { MdOutlineEmojiPeople, MdEditCalendar, MdOutlineAttachMoney } from "reac
 import axios from "axios";
 import { AuthContext } from "../auth/AuthProvider";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 
 const DetailJob = () => {
@@ -82,6 +83,10 @@ const DetailJob = () => {
     return (
 
         <section className=" body-font bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300">
+            <Helmet>
+                <title>JOBsHQ | Details</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <div className="container px-5 py-24 mx-auto flex flex-col">
                 <div className="lg:w-4/6 mx-auto">
                     <div className="rounded-lg h-64 overflow-hidden">

@@ -1,9 +1,15 @@
+import { Helmet } from "react-helmet-async";
+
 const Blogs = () => {
 
 
 
     return (
         <div className="bg-white grid lg:grid-cols-3 dark:bg-slate-900 ">
+            <Helmet>
+                <title>JOBsHQ | Blogs</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <div className='text-justify p-6 bg-slate-200  dark:bg-slate-800 m-14'>
                 <div className="text-2xl font-semibold mb-5">What is an access token and refresh token? How do they work and where should we store them on the client-side?</div>
                 <div className=" text-slate-400">

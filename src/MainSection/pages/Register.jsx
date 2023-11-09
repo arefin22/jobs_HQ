@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
@@ -50,6 +51,10 @@ const Register = () => {
 
     return (
         <div className="bg-white dark:bg-slate-800">
+            <Helmet>
+                <title>JOBsHQ | Register</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <form onSubmit={handleRegisterSubmit}>
                 <div className="container px-5 py-24 mx-auto flex">
                     <div className="lg:w-1/3 md:w-1/2 bg-white border rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0 relative z-10 shadow-md">

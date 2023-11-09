@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const EditJob = () => {
 
@@ -57,6 +58,10 @@ const EditJob = () => {
 
     return (
         <section className="text-gray-600 bg-white dark:text-slate-300 dark:bg-slate-900 body-font relative">
+            <Helmet>
+                <title>JOBsHQ | Edit A Job</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <div className="container px-5 py-24 mx-auto">
                 <div className="card bg-slate-200 drop-shadow-xl px-4 md:px-0 dark:bg-slate-800 py-9">
                     <div className="flex flex-col text-center w-full mb-12">

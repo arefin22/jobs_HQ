@@ -1,17 +1,21 @@
 import { useLoaderData } from "react-router-dom";
 import SingleJob from "../components/singleJob";
+import { Helmet } from "react-helmet-async";
 // import Title from "../components/Title";
 
 
 const Jobs = () => {
 
-    const jobs  = useLoaderData()
+    const jobs = useLoaderData()
     // console.log(jobs.length);
 
     return (
         <div className="bg-slate-100 dark:bg-slate-900">
-        
-        
+
+            <Helmet>
+                <title>JOBsHQ | All Jobs</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
 
             {/* <Title></Title> */}
 
@@ -22,6 +26,7 @@ const Jobs = () => {
                 {
                     jobs.map(job => <SingleJob key={job._id} >job={job}</SingleJob>)
                 }
+                
             </div>
         </div>
     );

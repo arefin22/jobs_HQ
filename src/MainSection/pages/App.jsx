@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import AboutUs from '../components/AboutUs'
 import Ads from '../components/Ads'
 // import FeedBack from '../components/FeedBack'
@@ -9,6 +10,10 @@ function App() {
 
   return (
     <div className='bg-white dark:bg-slate-900'>
+      <Helmet>
+        <title>JOBsHQ</title>
+        <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+      </Helmet>
       <Hero></Hero>
       <JobsSectionHomePage></JobsSectionHomePage>
       <AboutUs></AboutUs>

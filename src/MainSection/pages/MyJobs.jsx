@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
 import axios from "axios";
 import MyTableRow from "../components/MyTableRow";
+import { Helmet } from "react-helmet-async";
 
 const MyJobs = () => {
 
@@ -12,7 +13,8 @@ const MyJobs = () => {
     const { user } = useContext(AuthContext)
 
     // console.log(user?.email);
-    const url = `https://jobs-hq-server.vercel.app/jobs?userEmail=${user?.email}`
+    // const url = `https://jobs-hq-server.vercel.app/jobs?userEmail=${user?.email}`
+    const url = `http://localhost:5000/jobs?userEmail=${user?.email}`
 
     // console.log(appliedData);
 
@@ -28,6 +30,10 @@ const MyJobs = () => {
 
 
         <div>
+            <Helmet>
+                <title>JOBsHQ | My Jobs</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <div className="overflow-x-auto container mx-auto my-9">
                 <table className="table">
                     {/* head */}

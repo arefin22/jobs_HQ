@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import TableRow from "../components/TableRow";
 import { AuthContext } from "../auth/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AppliedJobs = () => {
 
@@ -23,6 +24,10 @@ const AppliedJobs = () => {
 
     return (
         <div className="overflow-x-auto container mx-auto my-9">
+            <Helmet>
+                <title>JOBsHQ | Applied Jobs</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <table className="table">
                 {/* head */}
                 <thead>

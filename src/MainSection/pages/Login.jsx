@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -33,12 +34,16 @@ const Login = () => {
     // const handleGoogleLogin = () => {
     //     signInUsingPopup
     //     // navigate(location?.state ? location.state : '/')
-        
+
     // }
 
 
     return (
         <div className="bg-white dark:bg-slate-800">
+            <Helmet>
+                <title>JOBsHQ | Log In</title>
+                <meta name='description' content='Beginner friendly page for learning React Helmet.' />
+            </Helmet>
             <div className="container px-5 py-24 mx-auto flex">
                 <div className="lg:w-1/3 md:w-1/2 bg-white border rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
                     <form onSubmit={handleLoginSubmit}>
