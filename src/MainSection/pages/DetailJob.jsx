@@ -6,7 +6,7 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthProvider";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
-import { RiDeleteBin5Line } from "react-icons/ri";
+// import { RiDeleteBin5Line } from "react-icons/ri";
 
 
 const DetailJob = () => {
@@ -83,16 +83,16 @@ const DetailJob = () => {
 
     }
 
-    const handleDelete = id => {
-        const process = confirm("Delete Confirmation")
-        if (process) {
-            axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
-                .then(data => {
-                    console.log(data);
-                })
-        }
+    // const handleDelete = id => {
+    //     const process = confirm("Delete Confirmation")
+    //     if (process) {
+    //         axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
+    //             .then(data => {
+    //                 console.log(data);
+    //             })
+    //     }
 
-    }
+    // }
 
 
     return (
@@ -183,7 +183,7 @@ const DetailJob = () => {
                                         <div>
                                             <Link to={`/editJob/${jobData?._id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
                                             {/* <Link to={`/editJob/${jobData?._id}`} className="btn ml-3 btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Delete Job  <RiDeleteBin5Line /></Link> */}
-                                            <button onClick={() => handleDelete(id)} className="btn ml-3 btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Delete Job  <RiDeleteBin5Line /></button>
+                                            {/* <button onClick={() => handleDelete(id)} className="btn ml-3 btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Delete Job  <RiDeleteBin5Line /></button> */}
                                         </div>
                                 }
                             </div>
