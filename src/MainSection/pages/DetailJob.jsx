@@ -6,6 +6,7 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthProvider";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 
 const DetailJob = () => {
@@ -15,15 +16,10 @@ const DetailJob = () => {
     const [singleUserData, setSingleUserData] = useState(null)
 
     // console.log(singleUserData?.name);
-    console.log(user);
-    console.log("Job Data here", jobData);
-    // console.log("Single User Data",singleUserData);
-    console.log(jobData?.userEmail !== user?.email ? 'New User' : 'old User');
+    // console.log(user);
+    // console.log("Job Data here", jobData);
+    // console.log(jobData?.userEmail !== user?.email ? 'New User' : 'old User');
 
-    // const { jobTitle, jobType, postedBy, postingDate, salaryRange, applicantsNumber, applicationDeadline } = jobDat
-
-    // const { jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn } = jobData
-    // console.log(jobTitle, postedBy, salaryFrom, salaryTo, jobCategory, photoUrl, applicant, description, postedOn, expiresOn);
 
 
     useEffect(() => {
@@ -38,16 +34,12 @@ const DetailJob = () => {
     useEffect(() => {
         axios.get('https://jobs-hq-server.vercel.app/user')
             .then(data => {
-                // console.log(data.data);
                 const aData = data.data
                 const userData = aData.find(ss => ss.email === user?.email)
                 setSingleUserData(userData);
-                // console.log(userData?.email);
-                // console.log('User Data email',user?.email);
-                // const singleData = aData.find(aData?.email === user?.email)
-                // console.log(singleData);
             })
     }, [user?.email])
+
 
     // useEffect(() => {
     //     axios.get('https://jobs-hq-server.vercel.app/applications')
@@ -77,6 +69,17 @@ const DetailJob = () => {
                 }
             })
 
+
+    }
+
+    const handleDelete = id => {
+        const process = confirm("Delete Confirmation")
+        if (process) {
+            axios.delete(`https://jobs-hq-server.vercel.app/jobs/${id}`)
+                .then(data => {
+                    console.log(data);
+                })
+        }
 
     }
 
@@ -164,7 +167,11 @@ const DetailJob = () => {
                                             </dialog>
                                         </div>
                                         :
-                                        <Link to={`/editJob/${jobData?._id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
+                                        <div>
+                                            <Link to={`/editJob/${jobData?._id}`} className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Edit Job  &#x270E;</Link>
+                                            {/* <Link to={`/editJob/${jobData?._id}`} className="btn ml-3 btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Delete Job  <RiDeleteBin5Line /></Link> */}
+                                            <button onClick={() => handleDelete(id)} className="btn ml-3 btn-outline text-black my-3 hover:text-white dark:text-white w-1/3">Delete Job  <RiDeleteBin5Line /></button>
+                                        </div>
                                 }
                             </div>
                         </div>

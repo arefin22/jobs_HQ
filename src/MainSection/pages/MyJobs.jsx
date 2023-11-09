@@ -14,15 +14,15 @@ const MyJobs = () => {
 
     // console.log(user?.email);
     // const url = `https://jobs-hq-server.vercel.app/jobs?userEmail=${user?.email}`
-    const url = `http://localhost:5000/jobs?userEmail=${user?.email}`
+    // const url = `http://localhost:5000/jobs?userEmail=${user?.email}`
 
     // console.log(appliedData);
 
     useEffect(() => {
-        axios.get(url)
+        axios.get(`http://localhost:5000/jobs/${user?.email}`)
             .then(data => setMyJobs(data.data))
 
-    }, [url])
+    }, [user?.email])
 
 
     return (

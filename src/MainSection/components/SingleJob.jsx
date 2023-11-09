@@ -42,7 +42,7 @@ const SingleJob = (job) => {
                 </table> */}
                 <div className="flex justify-start items-center gap-3">
                     <MdEditCalendar />
-                    <h2 className="text-lg text-slate-800 dark:text-slate-200"><i>{postedOn}</i></h2>
+                    <h2 className="text-lg text-slate-800 dark:text-slate-200"><i>{postedOn.slice(0,10)}</i></h2>
                 </div>
                 <div className="flex justify-start items-center gap-3">
                     <MdOutlineAttachMoney />
@@ -54,12 +54,12 @@ const SingleJob = (job) => {
                 </div>
                 <div className="flex justify-start items-center gap-3">
                     <SlCalender />
-                    <h2 className="text-lg">Deadline : <i>{expiresOn}</i></h2>
+                    <h2 className="text-lg">Deadline : <i>{expiresOn.slice(0,10)}</i></h2>
                 </div>
                 <div className="flex flex-row items-center justify-between">
                     {/* <button  onClick={() => handleClick(_id)} >View Details &rarr;</button> */}
                     <Link className="btn btn-outline text-black my-3 hover:text-white dark:text-white w-1/3" to={`/job/${_id}`}>View Details &rarr;</Link>
-                    <h2 className="text-lg border text-center w-1/5 rounded-3xl">{jobCategory}</h2>
+                    <h2 className="badge badge-outline">{jobCategory}</h2>
                 </div>
 
             </div>
